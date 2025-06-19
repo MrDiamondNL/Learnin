@@ -1,18 +1,37 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+int buzzerPin = 12;
 
-void setup() {
+void setup()
+{
   // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  pinMode(buzzerPin, OUTPUT);
 }
 
-void loop() {
+void loop()
+{
   // put your main code here, to run repeatedly:
-}
+  int sound_duration = 500;
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  for (int i = 0; i < 20; i++)
+  {
+    if (i < 5)
+    {
+      sound_duration = 500;
+    }
+    else if (i < 10)
+    {
+      sound_duration = 300;
+    }
+    else if (i < 20)
+    {
+      sound_duration = 100;
+    }
+    digitalWrite(buzzerPin, HIGH);
+    delay(sound_duration);
+    digitalWrite(buzzerPin, LOW);
+    delay(sound_duration);
+  }
+  digitalWrite(buzzerPin, HIGH);
+  delay(5000);
 }
